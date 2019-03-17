@@ -1,0 +1,14 @@
+nohup: 忽略输入
+2019-03-17T19:04:27+0800 [-] Loading /home/python/.virtualenvs/analysis/lib/python3.5/site-packages/scrapyd/txapp.py...
+2019-03-17T19:04:28+0800 [-] Scrapyd web console available at http://127.0.0.1:6800/
+2019-03-17T19:04:28+0800 [-] Loaded.
+2019-03-17T19:04:28+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.9.0 (/home/python/.virtualenvs/analysis/bin/python3 3.5.2) starting up.
+2019-03-17T19:04:28+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2019-03-17T19:04:28+0800 [-] Site starting on 6800
+2019-03-17T19:04:28+0800 [twisted.web.server.Site#info] Starting factory <twisted.web.server.Site object at 0x7f1af42bd278>
+2019-03-17T19:04:28+0800 [Launcher] Scrapyd 1.2.0 started: max_proc=8, runner='scrapyd.runner'
+2019-03-17T19:05:05+0800 [twisted.python.log#info] "127.0.0.1" - - [17/Mar/2019:11:05:03 +0000] "POST /addversion.json HTTP/1.1" 200 102 "-" "Python-urllib/3.5"
+2019-03-17T19:05:34+0800 [twisted.python.log#info] "127.0.0.1" - - [17/Mar/2019:11:05:34 +0000] "GET / HTTP/1.1" 200 716 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+2019-03-17T19:05:34+0800 [twisted.python.log#info] "127.0.0.1" - - [17/Mar/2019:11:05:34 +0000] "GET /favicon.ico HTTP/1.1" 404 153 "http://localhost:6800/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+2019-03-17T19:06:34+0800 [twisted.web.http.HTTPChannel#info] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=41862)
+2019-03-17T19:06:34+0800 [twisted.web.http.HTTPChannel#info] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=41858)
