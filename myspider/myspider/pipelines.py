@@ -289,16 +289,15 @@ class GushiciPipeline(object):
 
 class MeishitianxiaPipeline():
     def __init__(self):
-
         self.final_dict = {}
         self.final_dict['dict'] = []
     def open_spider(self,spider):
         pass
     def process_item(self,item,spider):
-        print("dddddddddddd",item)
+        # print("dddddddddddd",item)
         self.final_dict['dict'].append(item)
     def close_spider(self,spider):
-        with open("/home/gaozhiwei/Desktop/caipubuchongdierban.json",'w') as f:
+        with open("/home/gaozhiwei/Desktop/caipubuchongdisanban11.json",'w') as f:
             f.write(json.dumps(self.final_dict,ensure_ascii=False,indent=1))
 class QiiankuntingshuPipeline():
     def __init__(self):
