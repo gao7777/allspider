@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f110c08-4866-47c0-8250-e160964b4c2f" name="Default" comment="" />
+    <list default="true" id="3f110c08-4866-47c0-8250-e160964b4c2f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/jjj.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/100data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/5xiaopin.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/allzhidaodata.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/caixindata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/datachuli.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/douban.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/finalzhanghong.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/jiexizhanghaozaidianshuo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/kuwo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/kuwo1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/kuwo666.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/pandaculi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/old data/scrapyd.log" beforeDir="false" afterPath="$PROJECT_DIR$/myspider/scrapyd.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myspider/pandansdd.py" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +117,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myspider/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
+            <state relative-caret-position="-300">
               <caret line="554" selection-start-line="554" selection-end-line="554" />
               <folding>
                 <element signature="e#118#129#0" expanded="true" />
@@ -110,24 +127,72 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/77c4ed4c-09ae-4a96-a2ab-37d0dc6c98c8/console.sql">
+        <entry file="file://$PROJECT_DIR$/myspider/testone.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-            </state>
+            <state relative-caret-position="-3360" />
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/myspider/zhengzescriptzuixn.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myspider/wgetscript.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="257" lean-forward="true" selection-start-line="257" selection-end-line="257" />
+            <state relative-caret-position="100">
+              <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/myspider/xiamlayatest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1186" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myspider/kuwozhengzescript.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myspider/migutingshuscript.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myspider/querydata.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1440">
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myspider/setup.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myspider/requests.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -228,7 +293,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -241,23 +305,11 @@
               <item name="zhidaospidr" type="462c0819:PsiDirectoryNode" />
               <item name="myspider" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="zhidaospidr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zhidaospidr" type="462c0819:PsiDirectoryNode" />
-              <item name="myspider" type="462c0819:PsiDirectoryNode" />
-              <item name="myspider" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zhidaospidr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zhidaospidr" type="462c0819:PsiDirectoryNode" />
-              <item name="myspider" type="462c0819:PsiDirectoryNode" />
-              <item name="myspider" type="462c0819:PsiDirectoryNode" />
-              <item name="old_data_in" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -275,17 +327,17 @@
     <property name="settings.editor.selected.configurable" value="Images" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/myspider/myspider/spiders" />
-      <recent name="$PROJECT_DIR$/myspider/myspider" />
-      <recent name="$PROJECT_DIR$/myspider" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/myspider" />
       <recent name="$PROJECT_DIR$/myspider/myspider/spiders" />
       <recent name="$PROJECT_DIR$/myspider/myspider/old_data_in" />
       <recent name="$PROJECT_DIR$/myspider/old data" />
       <recent name="$PROJECT_DIR$/myspider/myspider" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/myspider/myspider/spiders" />
+      <recent name="$PROJECT_DIR$/myspider/myspider" />
+      <recent name="$PROJECT_DIR$/myspider" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -517,27 +569,28 @@
       <workItem from="1560476767835" duration="8800000" />
       <workItem from="1560489066958" duration="35651000" />
       <workItem from="1560735383483" duration="15887000" />
+      <workItem from="1560859864724" duration="667000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="665664000" />
+    <option name="totallyTimeSpent" value="666331000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1297" height="589" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24419536" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19215372" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.4291939" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.53812635" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49879903" weight="0.26143792" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.38344225" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32897604" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.50980395" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.22004357" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.32026145" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.501201" side_tool="true" weight="0.32034633" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -605,186 +658,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/myspider/myspider/spiders/gushiciwang.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="223" column="12" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="12" />
-          <folding>
-            <element signature="e#24#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/scrapy/http/request/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myspider/myspider/spiders/zhidao.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-915">
-          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://77c4ed4c-09ae-4a96-a2ab-37d0dc6c98c8/schema/nlpdata/table/t_commond_skill_copy">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://326078cb-3b7b-46f1-8964-70916e8ebe47/schema/wordsegment/table/t_commond_skill" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/cbb62d87-47c5-4b29-9f17-07a24d46f765/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="das://cbb62d87-47c5-4b29-9f17-07a24d46f765/schema/wordsegment/table/t_commond_skill">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://77c4ed4c-09ae-4a96-a2ab-37d0dc6c98c8/schema/nlpdata/table/t_commond_skill">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="domain='joke'" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/re.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="183" column="4" selection-start-line="183" selection-start-column="4" selection-end-line="183" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.PyCharm2018.3/system/python_stubs/-1435012589/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="5144" column="8" selection-start-line="5144" selection-start-column="8" selection-end-line="5144" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/selenium/webdriver/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#788#847#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myspider/myspider/hhhh.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24182">
-          <caret line="26" column="194132" selection-start-line="26" selection-start-column="194132" selection-end-line="26" selection-end-column="194132" />
-          <folding>
-            <element signature="n#style#0;n#iframe#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/selenium/webdriver/chrome/service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/selenium/webdriver/chrome/remote_connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-215" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/selenium/webdriver/chrome/options.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="70" column="38" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#1013#1266#0" />
-            <element signature="e#1321#1442#0" />
-            <element signature="e#1321#1405#1" />
-            <element signature="e#1518#1691#0" />
-            <element signature="e#1518#1653#1" />
-            <element signature="e#1743#1760#0" />
-            <element signature="e#1813#1870#0" />
-            <element signature="e#1926#2039#0" />
-            <element signature="e#1926#2001#1" />
-            <element signature="e#2117#2429#0" />
-            <element signature="e#2117#2390#1" />
-            <element signature="e#2478#2583#0" />
-            <element signature="e#2478#2552#1" />
-            <element signature="e#2631#2866#0" />
-            <element signature="e#2631#2729#1" />
-            <element signature="e#2916#3520#0" />
-            <element signature="e#2916#3009#1" />
-            <element signature="e#3096#3467#0" />
-            <element signature="e#3132#3199#0" />
-            <element signature="e#3570#4126#0" />
-            <element signature="e#3570#3756#1" />
-            <element signature="e#3791#4055#0" />
-            <element signature="e#4184#4544#0" />
-            <element signature="e#4184#4404#1" />
-            <element signature="e#4604#4726#0" />
-            <element signature="e#4604#4684#1" />
-            <element signature="e#4788#5011#0" />
-            <element signature="e#4788#4962#1" />
-            <element signature="e#5059#5181#0" />
-            <element signature="e#5059#5134#1" />
-            <element signature="e#5243#5641#0" />
-            <element signature="e#5243#5377#1" />
-            <element signature="e#5694#5908#0" />
-            <element signature="e#5949#6539#0" />
-            <element signature="e#5949#6093#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/selenium/webdriver/chrome/webdriver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-440">
-          <caret line="82" column="23" lean-forward="true" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/selenium/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/selenium/webdriver/remote/switch_to.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="64" column="67" lean-forward="true" selection-start-line="64" selection-start-column="67" selection-end-line="64" selection-end-column="67" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#1136#1157#0" />
-            <element signature="e#1211#1367#1" />
-            <element signature="e#1853#2043#0" />
-            <element signature="e#1853#1975#1" />
-            <element signature="e#2091#3083#0" />
-            <element signature="e#2091#2564#1" />
-            <element signature="e#2650#3003#0" />
-            <element signature="e#2798#3003#0" />
-            <element signature="e#3121#3401#0" />
-            <element signature="e#3121#3340#1" />
-            <element signature="e#3446#3852#0" />
-            <element signature="e#3446#3664#1" />
-            <element signature="e#3706#3754#0" />
-            <element signature="e#3902#4609#0" />
-            <element signature="e#3934#3995#0" />
-            <element signature="e#4022#4092#0" />
-            <element signature="e#4148#4609#0" />
-            <element signature="e#4373#4548#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../.virtualenvs　　/scrapy_1/lib/python3.6/site-packages/selenium/webdriver/remote/remote_connection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4095" />
@@ -1413,26 +1286,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myspider/wgetscript.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myspider/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="554" selection-start-line="554" selection-end-line="554" />
-          <folding>
-            <element signature="e#118#129#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://77c4ed4c-09ae-4a96-a2ab-37d0dc6c98c8/schema/nlpdata/table/qiankuntingshu">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1448,13 +1301,6 @@
             <filter text="id&gt;100" />
             <filter text="id&gt;=6000" />
           </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/77c4ed4c-09ae-4a96-a2ab-37d0dc6c98c8/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1479,19 +1325,147 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myspider/myspider/old_data_in/url_list.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="-495" />
+    <entry file="file://$PROJECT_DIR$/myspider/myspider/old_data_in/url_list.txt" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/77c4ed4c-09ae-4a96-a2ab-37d0dc6c98c8/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/old data/5xiaopin.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/scrapyd.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/old data/datachuli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-690" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/old data/allzhidaodata.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="-280700" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/old data/100data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="309" column="93" selection-start-line="309" selection-start-column="12" selection-end-line="309" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/old data/caixindata.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/old data/pandaculi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/old data/jiexizhanghaozaidianshuo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/jjj.json">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/myspider/zhengzescriptzuixn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="257" lean-forward="true" selection-start-line="257" selection-end-line="257" />
+        <state relative-caret-position="360">
+          <caret line="253" lean-forward="true" selection-start-line="253" selection-end-line="253" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/kuwozhengzescript.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/pandansdd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/migutingshuscript.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/requests.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/querydata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1440">
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/setup.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300">
+          <caret line="554" selection-start-line="554" selection-end-line="554" />
+          <folding>
+            <element signature="e#118#129#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/testone.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3360" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/wgetscript.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/xiamlayatest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1186" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myspider/ximalayaremen.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58183" />
       </provider>
     </entry>
   </component>
