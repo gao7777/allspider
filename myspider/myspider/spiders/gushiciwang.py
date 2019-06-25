@@ -202,16 +202,50 @@ class GushiciSpider(scrapy.Spider):
     #     for i in ur_list:
     #         print(i)
     #         yield scrapy.Request(i,callback=self.parse_one,dont_filter=True)
-    def parse(self, response):
+    # def parse(self, response):
+    #     print("start")
+    #     response =Selector(response)
+    #     url_list = response.xpath("//div[@class='typecont']/span/a/@href").getall()
+    #     head_url = "https://so.gushiwen.org"
+    #     for i in url_list:
+    #         print(i+'mid')
+    #         complete_url = head_url+i
+    #         yield scrapy.Request(complete_url,callback=self.parse_one)
+    # def parse_one(self,response):
+    #     response=Selector(response)
+    #     item = dict()
+    #     title = response.xpath("//div[@class='sons'][1]/div[@class='cont']/h1/text()").get()
+    #     item['title']= title.strip()
+    #     chaodai = response.xpath("//div[@class='sons'][1]/div[@class='cont']/p/a[1]/text()").get()
+    #     author = response.xpath("//div[@class='sons'][1]/div[@class='cont']/p/a[2]/text()").get()
+    #     author = chaodai+author
+    #     item['author'] = author.strip()
+    #     content = response.xpath("string(//div[@class='sons'][1]/div[@class='cont']/div[@class='contson'])").get()
+    #     item['content'] = content.strip()
+    #     print("sfsfsfsfsfsfsfsf")
+    #     print(item)
+    #     yield item
+    def parse(self,response):
         print("start")
-        response =Selector(response)
-        url_list = response.xpath("//div[@class='typecont']/span/a/@href").getall()
-        head_url = "https://so.gushiwen.org"
+        response= Selector(response)
+        source_url = "https://so.gushiwen.org/authors/authorvsw_07d17f8539d7A{}.aspx"
+        for num in range(1,10):
+            cur_url = source_url.format(num)
+            yield scrapy.Request(cur_url,callback=self.parse_taoyuanming)
+
+    def parse_taoyuanming(self,response):
+        response= Selector(response)
+
+        url_list = response.xpath("//div[@class='main3']/div[contains(@class,'left')]/div[@class='sons']/div[@class='cont']/p/a/@href")
         for i in url_list:
-            print(i+'mid')
-            complete_url = head_url+i
-            yield scrapy.Request(complete_url,callback=self.parse_one)
-    def parse_one(self,response):
+            i = i.get()
+            if re.match("/shiwen",i):
+                source_url = "https://so.gushiwen.org"
+                cur_url = source_url+i
+                yield scrapy.Request(cur_url,callback=self.parse_taoyuanming_two)
+            # print(i.get())
+
+    def parse_taoyuanming_two(self,response):
         response=Selector(response)
         item = dict()
         title = response.xpath("//div[@class='sons'][1]/div[@class='cont']/h1/text()").get()
@@ -222,13 +256,7 @@ class GushiciSpider(scrapy.Spider):
         item['author'] = author.strip()
         content = response.xpath("string(//div[@class='sons'][1]/div[@class='cont']/div[@class='contson'])").get()
         item['content'] = content.strip()
-        print("sfsfsfsfsfsfsfsf")
-        print(item)
         yield item
-
-
-
-
 
 
 

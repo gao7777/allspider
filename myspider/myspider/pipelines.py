@@ -270,16 +270,13 @@ class GushiciPipeline(object):
     def __init__(self):
         self.dict = {}
         self.dict['dict'] = []
-        self.f = open('/home/gaozhiwei/Desktop/tanshisanbaishou.json','w')
+        self.f = open('/home/gaozhiwei/Desktop/taoyuanming.json','w')
     def open_spider(self,spider):
-        print(spider)
-        # dict = {}
-        # dict['dict']=[]
+            pass
     def process_item(self,item,spider):
         print('itempipeline',item)
         self.dict['dict'].append(item)
-        # json_data = json.dumps(item,ensure_ascii=False,indent=2)
-        # self.f.write(json_data+"\n")
+
     def close_spider(self,spider):
         json_data = json.dumps(self.dict,ensure_ascii=False,indent=1)
         self.f.write(json_data)
