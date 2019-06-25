@@ -46,6 +46,7 @@ def To_chinese4(num):
                 val = int(val)
                 if val != 0:
                     result += _P0[idx] + _MAPPING[val]
+
                     # print(type(lst[idx - 1]))
                     # print(lst[idx + 1])
                     if idx < c - 1 and lst[idx + 1] == 0:
