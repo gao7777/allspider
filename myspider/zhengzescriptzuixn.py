@@ -149,12 +149,12 @@ def chinese_num(str_data):
 
 
 
-def main():
+def migutitle(titlename_list):
 
     # with open("/home/gaozhiwei/Desktop/authorname_sort_uniq.txt") as f:
     #     json_data = f.readlines()
-    with open("/home/gaozhiwei/Desktop/contentname_sort_uniq.txt") as f:
-        json_data = f.readlines()
+    # with open("/home/gaozhiwei/Desktop/contentname_sort_uniq.txt") as f:
+    #     json_data = f.readlines()
 
     # for i in json_data:
     #     print(i.strip())
@@ -162,7 +162,8 @@ def main():
     # dict = json.loads(json_data)['dict']
     # value_list = dict[0]['value']
     final_list = []
-    for i in json_data:
+    titlename_list = list(set(titlename_list))
+    for i in titlename_list:
         i = i.strip()
         source=i
         src_i = i
@@ -177,7 +178,7 @@ def main():
         cur_dict={}
         cur_dict['majorType']="migu_read_title"
         cur_dict['minorType']=source
-        cur_dict['value']=cur_list
+        cur_dict['value']=cur_final_list
         final_list.append(cur_dict)
 
 
@@ -191,7 +192,27 @@ def main():
     # final_dict_cur['majorType'] = "migu_read_author"
     # final_dict_cur['value']= final_list
     # final_dict['dict'].append(final_dict_cur)
-    with open("/home/gaozhiwei/Desktop/contentname_sort_uniq.json",'w') as f:
+    with open("/home/gaozhiwei/Desktop/contentname_sort_uniq621.json",'w') as f:
+        f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
+def miguauthor(author_list):
+    author_list= list(set(author_list))
+    final_list = []
+    for i in author_list:
+        cur_list = []
+        cur_list.append(i)
+        i = chinese_num(i)
+        i = quchubidian(i)
+        cur_list.append(i)
+        cur_list= list(set(cur_list))
+        for j in cur_list:
+            final_list.append(j)
+    final_dict = {}
+    final_dict['dict']=[]
+    f_dict = {}
+    f_dict['majorType'] = "migu_read_author"
+    f_dict['value']= final_list
+    final_dict['dict'].append(f_dict)
+    with open("/home/gaozhiwei/Desktop/authorname_sort_uniq621.json",'w') as f:
         f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
 
 def maintest():
@@ -249,7 +270,21 @@ def mainximalaya():
         f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
 
 
+def migutingshu():
+    with open("/home/gaozhiwei/Desktop/apiSearch.txt") as f:
+        data = f.readlines()
 
+    title_name= []
+    author_name = []
+    for i in data:
+        i = i.strip()
+        if re.match("contentName=(.*)",i):
+            title_name.append(re.match("contentName=(.*)",i).group(1))
+        if re.match("author=(.*)",i):
+            author_name.append(re.match("author=(.*)",i).group(1))
+
+    miguauthor(author_name)
+    migutitle(title_name)
 
 
 
@@ -259,4 +294,5 @@ def mainximalaya():
 if __name__ == '__main__':
     # main()
     # maintest()
-    mainximalaya()
+    # mainximalaya()
+    migutingshu()

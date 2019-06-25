@@ -545,48 +545,105 @@ import re,json
 #         # print(i['key_word'])
 #
 # print(num)
-import time
+# import time
+#
+# from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
+# import threading
+#
+# def pringstr(str,two):
+#     try:
+#         print('start',str)
+#         dd= 1/0
+#         a = random.randint(2,5)
+#         print(a,'aaaaaaa')
+#         print(threading.enumerate())
+#         time.sleep(a)
+#         assert a==2
+#         print('end',str)
+#     except Exception as e:
+#         print(e)
+#         print("dfsfsf")
+# def main():
+#     # str_list = ["a","b","c"]
+#     str_list = [str(i) for i in range(2)]
+#     # with  ThreadPoolExecutor(5) as execute:
+#     execute = ThreadPoolExecutor(max_workers=1)
+#         # for each in str_list:
+#         #     execute.submit(pringstr,each,"ffsf")
+#         #     # execute.map(pringstr,str_list)
+#         # print("dfsfsfs")
+#     all_task = [execute.submit(pringstr,i,i) for i in str_list]
+#
+#     wait(all_task,return_when=ALL_COMPLETED)
+#     print("finish")
+# def maintest():
+#     a = random.randint(10,20)
+#     print(a)
+#
+#
+# if __name__ == '__main__':
+#     main()
+#     # maintest()
 
-from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
-import threading
 
-def pringstr(str,two):
-    try:
-        print('start',str)
-        dd= 1/0
-        a = random.randint(2,5)
-        print(a,'aaaaaaa')
-        print(threading.enumerate())
-        time.sleep(a)
-        assert a==2
-        print('end',str)
-    except Exception as e:
-        print(e)
-        print("dfsfsf")
+# def main():
+#     import re,json,pymysql
+#     conn = pymysql.connect(host="localhost", user="root", password="gaozhiwei",
+#                  database="nlpdata", autocommit = True)
+#     cursor = conn.cursor()
+#     sql = "insert into diezi_skill (word,duyin,content) values (%s,%s,%s)"
+#     with open("/home/gaozhiwei/Desktop/sandiezi.json") as f:
+#         json_data =f.readlines()
+#     for i in json_data:
+#         i = json.loads(i)
+#         word = i['word']
+#         print(word)
+#         print(type(word))
+#         duyin = i['pronunciation']
+#         interpretation = i['interpretation']
+#         cur_list = []
+#         cur_list.append(word)
+#         cur_list.append(duyin)
+#         cur_list.append(interpretation)
+#         try:
+#             cursor.execute(sql,cur_list)
+#         except Exception as e:
+#             print(e)
+#
+#             pass
+
+import os
+
 def main():
-    # str_list = ["a","b","c"]
-    str_list = [str(i) for i in range(2)]
-    # with  ThreadPoolExecutor(5) as execute:
-    execute = ThreadPoolExecutor(max_workers=1)
-        # for each in str_list:
-        #     execute.submit(pringstr,each,"ffsf")
-        #     # execute.map(pringstr,str_list)
-        # print("dfsfsfs")
-    all_task = [execute.submit(pringstr,i,i) for i in str_list]
+    # with open("/home/gaozhiwei/Desktop/ximalayaanimalvoice/animalvoice1.json") as f:
+    #     json_data = f.read()
+    # data = json.loads(json_data)
+    # voice_data = data['data']['tracksAudioPlay']
+    # for i in voice_data:
+    #     trackname = i['trackName']
+    #     voice_src = i['src']
+    #     print(trackname,voice_src)
+    wgetcommand = "wget -O /home/gaozhiwei/Desktop/ximalayaanimalvoice/{}  {}"
+    for i in os.listdir("/home/gaozhiwei/Desktop/ximalayaanimalvoice"):
+        print(i)
+        with open("/home/gaozhiwei/Desktop/ximalayaanimalvoice/{}".format(i)) as f:
+            json_data = f.read()
+        data = json.loads(json_data)
+        voice_data = data['data']['tracksAudioPlay']
+        for i in voice_data:
+            trackname = i['trackName']
+            voice_src = i['src']
+            cur_huizhui = voice_src[-4:]
+            trackname= trackname+cur_huizhui
+            trackname=re.sub(" ",'',trackname)
+            os.system(wgetcommand.format(trackname,voice_src))
+            print(trackname, voice_src)
 
-    wait(all_task,return_when=ALL_COMPLETED)
-    print("finish")
-def maintest():
-    a = random.randint(10,20)
-    print(a)
+
 
 
 if __name__ == '__main__':
     main()
-    # maintest()
-
-
-
 
 
 
