@@ -4,10 +4,7 @@ import re
 
 import scrapy
 from scrapy.selector import Selector
-# from myspider.settings import DEFAULT_REQUEST_HEADERS
 from myspider.items import XimaItem,MyspiderItem,ZhidaoItem,XiaopingItem,DoubanItem
-from fake_useragent import UserAgent
-import requests
 num = 0
 def re_url():
     url_list = []

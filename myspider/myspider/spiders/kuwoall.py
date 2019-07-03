@@ -4,18 +4,8 @@ import re
 
 import scrapy
 from scrapy.selector import Selector
-# from myspider.settings import DEFAULT_REQUEST_HEADERS
 from myspider.items import XimaItem,MyspiderItem,ZhidaoItem,XiaopingItem,DoubanItem,Kuwoall
-from fake_useragent import UserAgent
-import requests
-num = 0
-def re_url():
-    url_list = []
-    str="https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=time&page_limit=20&page_start={}"
-    for i in range(30):
-        url = str.format(i)
-        url_list.append(url)
-    return url_list
+
 
 class KuwoSpider(scrapy.Spider):
     name = 'kuwoall'

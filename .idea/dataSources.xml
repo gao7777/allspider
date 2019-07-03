@@ -43,11 +43,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="skill_data" uuid="944cc86d-faf2-4ed5-9dcf-af5530b97d14">
+    <data-source source="LOCAL" name="aliyunspider" uuid="9be7311c-3788-4f49-960d-5da38497ea67">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/skill_data</jdbc-url>
+      <jdbc-url>jdbc:mysql://52.80.70.220:3306/nlpdata</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

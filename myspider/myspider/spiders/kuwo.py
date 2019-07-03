@@ -1,27 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
-import time
 
 import scrapy
 from scrapy.selector import Selector
-# from myspider.settings import DEFAULT_REQUEST_HEADERS
-from myspider.items import XimaItem,MyspiderItem,ZhidaoItem,XiaopingItem,Kuwo
-from fake_useragent import UserAgent
-import requests
-import scrapy_redis
-# def re_url():
-#     url_list = []
-#     print('uuudsl')
-#     with open('./url_list.txt','r') as f:
-#         while True:
-#             line = f.readline()
-#             if line:
-#                 url_list.append(line.strip())
-#             else:
-#                 return url_list
-
-# # 'https://zhidao.baidu.com/search?word=%CA%D6%BB%FA%C9%CF%B5%C4wpsoffice%BF%C9%D2%D4%D7%F6%CA%B2%C3%B4&ie=gbk&site=-1&sites=0&date=0&pn=10',
-# 'https://zhidao.baidu.com/search?word=%B3%C9%C4%EA%C8%CB%D1%A7%CE%E8%B5%B8%CA%B1%C8%E7%BA%CE%D5%FD%C8%B7%C1%B7%CF%B0%CF%C2%D1%FC%D1%FC%B2%BF%B1%A3%BD%A1%D6%AA%CA%B6%D4%E7&ie=gbk&site=-1&sites=0&date=0&pn=10']
 class ZhidaoSpider(scrapy.Spider):
     name = 'kuwo'
     allowed_domains = ['kuwo.cn']

@@ -191,80 +191,127 @@
 
 
 
-import json,os,time
-
-
-
-# path= "/home/gaozhiwei/Desktop/poetry/"
+# import json,os,time
 #
-# dict = {}
-# dict['dict'] = []
-# for i,j,k in os.walk(path):
+#
+#
+# # path= "/home/gaozhiwei/Desktop/poetry/"
+# #
+# # dict = {}
+# # dict['dict'] = []
+# # for i,j,k in os.walk(path):
+# #     print(i)
+# #     for l in k:
+# #         print(i+l)
+# #         with open(i+l) as f:
+# #             data = f.read()
+# #             data = json.loads(data)
+# #             for kk in data:
+# #                 print(kk)
+# #                 dict['dict'].append(kk)
+# #
+# # print(len(dict['dict']))
+# # with open('/home/gaozhiwei/Desktop/quntangshi.json','w') as f:
+# #
+# #     f.write(json.dumps(dict,ensure_ascii=False,indent=1))
+#
+# import re
+#
+#
+# path = "/home/gaozhiwei/Desktop/"
+#
+# with open(path+"tangshisanbaishou.json",'r') as f:
+#     tangs = f.read()
+# with open(path+"quantangshi.json",'r') as f:
+#     quants = f.read()
+#
+# ts_list = json.loads(tangs)['dict']
+# qt_list = json.loads(quants)['dict']
+#
+# start = time.time()
+# final_dict = {}
+# final_dict['dict']=[]
+# for i in ts_list:
+#     cur_title = i['title']
+#     if re.search("/",cur_title):
+#         cur_title=re.sub(r"/.+",'',cur_title)
+#     cur_title = re.sub("[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a]", '', cur_title)
+#     if re.search('其[一二三四五六七八九十]',cur_title):
+#         cur_str = re.search('其[一二三四五六七八九十]',cur_title).group()
+#         cur_title = re.sub("其[一二三四五六七八九十]",cur_str[1],cur_title)
+#         # print(cur_title)
+#         # print(i)
+#     cur_author=i['author'][2:]
+#     cur_list = []
+#     cur_list.append(i)
+#     print(cur_title,cur_author)
 #     print(i)
-#     for l in k:
-#         print(i+l)
-#         with open(i+l) as f:
-#             data = f.read()
-#             data = json.loads(data)
-#             for kk in data:
-#                 print(kk)
-#                 dict['dict'].append(kk)
+#     for j in qt_list:
+#         try:
+#             cur_j_title = j['title']
+#             cur_j_title = re.sub("[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a]", '', cur_j_title)
+#             cur_j_author = j['author']
+#             # print(cur_j_title,cur_j_author)
+#             if cur_title ==cur_j_title and cur_author == cur_j_author:
+#                 cur_list.append(j)
 #
-# print(len(dict['dict']))
-# with open('/home/gaozhiwei/Desktop/quntangshi.json','w') as f:
-#
-#     f.write(json.dumps(dict,ensure_ascii=False,indent=1))
+#             # print(cur_j_author,cur_j_title)
+#         except Exception as e:
+#             pass
+#             # print(j,e)
+#             # print('*'*10)
+#             # print(e)
+#             # print(cur_list)
+#     final_dict['dict'].append(cur_list)
+#     # print(final_dict['dict'])
+# end = time.time()
+# with open('/home/gaozhiwei/Desktop/zongffff22.json','w') as f:
+#     f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
+# print(end - start,"end",end)
+import json
 
-import re
+import pymysql
 
 
-path = "/home/gaozhiwei/Desktop/"
+def main():
+    conn = pymysql.connect(host="localhost",port=3306,database = "nlpdata",user='root',passwd="gaozhiwei")
+    cursor = conn.cursor()
+    sql = "select albumtitle from ximalayatwo"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    data_set = set()
+    for i in data_list:
+        title = i[0]
+        data_set.add(title)
 
-with open(path+"tangshisanbaishou.json",'r') as f:
-    tangs = f.read()
-with open(path+"quantangshi.json",'r') as f:
-    quants = f.read()
+    with open("/home/gaozhiwei/Desktop/ximalayaremen.json") as f:
+        jsondata = f.read()
+    re_data_list = json.loads(jsondata)
+    remen_set = set()
+    for i in re_data_list['dict']:
+        # print(i['minorType'])
+        remen_set.add(i['minorType'])
+    num = 0
+    donthave = []
+    for i in remen_set:
+        title = i
+        if title in data_set:
+            num +=1
+        else:
+            donthave.append(title)
+            print(title)
 
-ts_list = json.loads(tangs)['dict']
-qt_list = json.loads(quants)['dict']
+    with open('/home/gaozhiwei/Desktop/ximaremenqushi.json','w') as f:
+        f.write(json.dumps(donthave,ensure_ascii=False,indent=1))
 
-start = time.time()
-final_dict = {}
-final_dict['dict']=[]
-for i in ts_list:
-    cur_title = i['title']
-    if re.search("/",cur_title):
-        cur_title=re.sub(r"/.+",'',cur_title)
-    cur_title = re.sub("[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a]", '', cur_title)
-    if re.search('其[一二三四五六七八九十]',cur_title):
-        cur_str = re.search('其[一二三四五六七八九十]',cur_title).group()
-        cur_title = re.sub("其[一二三四五六七八九十]",cur_str[1],cur_title)
-        # print(cur_title)
-        # print(i)
-    cur_author=i['author'][2:]
-    cur_list = []
-    cur_list.append(i)
-    print(cur_title,cur_author)
-    print(i)
-    for j in qt_list:
-        try:
-            cur_j_title = j['title']
-            cur_j_title = re.sub("[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a]", '', cur_j_title)
-            cur_j_author = j['author']
-            # print(cur_j_title,cur_j_author)
-            if cur_title ==cur_j_title and cur_author == cur_j_author:
-                cur_list.append(j)
 
-            # print(cur_j_author,cur_j_title)
-        except Exception as e:
-            pass
-            # print(j,e)
-            # print('*'*10)
-            # print(e)
-            # print(cur_list)
-    final_dict['dict'].append(cur_list)
-    # print(final_dict['dict'])
-end = time.time()
-with open('/home/gaozhiwei/Desktop/zongffff22.json','w') as f:
-    f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
-print(end - start,"end",end)
+
+    print(len(remen_set))
+    print(num)
+    print(len(donthave))
+
+
+
+
+if __name__ == '__main__':
+    main()

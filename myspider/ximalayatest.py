@@ -118,30 +118,49 @@ def ximalayachuli(data_str):
             if i !='':
                 cur_final_list.append(i.upper())
     return cur_final_list
-with open('./ximalayaremen.txt','r') as f:
-    datalist = f.readlines()
+# with open('./ximalayaremen.txt','r') as f:
+#     datalist = f.readlines()
+#
+#
+# i = len(datalist)
+# print(i)
+# datalist = list(set(datalist))
+# j = len(datalist)
+# print(j)
+# for i in datalist:
+#     i = ximalayachuli(i.strip())
+#     # print(i)
+# finalxima_dict = {}
+# finalxima_dict['dict'] =[]
+# for i in datalist:
+#     cur_dict = {}
+#     cur_dict['majorType'] = 'question'
+#     cur_dict['minorType'] = i.strip()
+#     res_list = ximalayachuli(i.strip())
+#     cur_dict['value'] = list(set(res_list))
+#     finalxima_dict['dict'].append(cur_dict)
+# print(len(finalxima_dict['dict']))
+# with open('/home/gaozhiwei/Desktop/hhhhsfs.json','w') as f:
+#     f.write(json.dumps(finalxima_dict,ensure_ascii=False,indent=1))
 
 
-i = len(datalist)
-print(i)
-datalist = list(set(datalist))
-j = len(datalist)
-print(j)
-for i in datalist:
-    i = ximalayachuli(i.strip())
-    # print(i)
-finalxima_dict = {}
-finalxima_dict['dict'] =[]
-for i in datalist:
-    cur_dict = {}
-    cur_dict['majorType'] = 'question'
-    cur_dict['minorType'] = i.strip()
-    res_list = ximalayachuli(i.strip())
-    cur_dict['value'] = list(set(res_list))
-    finalxima_dict['dict'].append(cur_dict)
-print(len(finalxima_dict['dict']))
-with open('/home/gaozhiwei/Desktop/hhhhsfs.json','w') as f:
-    f.write(json.dumps(finalxima_dict,ensure_ascii=False,indent=1))
+
+def main():
+    conn = pymysql.connect(host='localhost', port=3306, user='root', password='gaozhiwei', database='nlpdata',
+                           autocommit=True, charset='utf8')
+    cur = conn.cursor()
+    sql = "select albumtrackcount from ximalayatwo_1"
+
+    count_list = cur.execute(sql)
+    count_list= cur.fetchall()
+    num = 0
+    for i in count_list:
+        count = i[0]
+        count = int(count)
+        num +=count
+    print(num)
+if __name__ == '__main__':
+    main()
 
 
 

@@ -1,14 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
-import re
 
-import pymysql
 import scrapy
 from scrapy.selector import Selector
-# from myspider.settings import DEFAULT_REQUEST_HEADERS
-from myspider.items import XimaItem,MyspiderItem,ZhidaoItem,XiaopingItem,DoubanItem,GushiciItem
-from fake_useragent import UserAgent
-import requests
 from urllib.parse import quote
 
 num = 0

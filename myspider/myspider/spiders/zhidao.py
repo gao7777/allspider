@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy.selector import Selector
-# from myspider.settings import DEFAULT_REQUEST_HEADERS
-from myspider.items import XimaItem,MyspiderItem,ZhidaoItem,XiaopingItem
-from fake_useragent import UserAgent
-import requests
-import scrapy_redis
-from urllib.parse import quote
+from myspider.items import ZhidaoItem
 def re_url():
     url_list = []
     print('uuudsl')

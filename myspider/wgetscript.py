@@ -22,45 +22,81 @@ import pymysql,os
 
 
 
+# def main():
+#     conn = pymysql.connect(host="localhost", database="nlpdata", user='root', password='gaozhiwei',
+#                            autocommit=True)
+#     cursor = conn.cursor()
+#     sql = "select id,category,title ,url_mp3 from qiankuntingshu"
+#     sql_update = "update qiankuntingshu set isplay='1' where id={};"
+#     sql_updateone = "update qiankuntingshu set mp3name={} where id={};"
+#     cmd =" wget -O  /home/gaozhiwei/Downloads/xiaohua/{} {}"
+#     f= open("/home/gaozhiwei/Desktop/xiazaiflag.txt",'a')
+#
+#     cursor.execute(sql)
+#     data_list = cursor.fetchall()
+#     # data_list= data_list[265:266]
+#     for i in data_list:
+#         name = i[1]+i[2]
+#         print(i)
+#         # print(name,i[3])
+#         url = i[3]
+#         # print(type(url))
+#         if url:
+#             huizhui = url[-4:]
+#             finalname = name +str(huizhui)
+#             # print(finalname)
+#             down_url = cmd.format(finalname,url)
+#             # print(down_url)
+#             flag = os.system(down_url)
+#             # print(flag)
+#             # print(type(flag))
+#             if flag ==0:
+#                 cur_updateurl = sql_update.format(i[0])
+#                 cur_updateurlone= sql_updateone.format(json.dumps(finalname,ensure_ascii=False),i[0])
+#                 cursor.execute(cur_updateurl)
+#                 # print(cur_updateurlone)
+#                 cursor.execute(cur_updateurlone)
+#             f.write(str(flag)+url+'\n')
+#
+#     f.close()
+
 def main():
     conn = pymysql.connect(host="localhost", database="nlpdata", user='root', password='gaozhiwei',
                            autocommit=True)
     cursor = conn.cursor()
-    sql = "select id,category,title ,url_mp3 from qiankuntingshu"
-    sql_update = "update qiankuntingshu set isplay='1' where id={};"
-    sql_updateone = "update qiankuntingshu set mp3name={} where id={};"
-    cmd =" wget -O  /home/gaozhiwei/Downloads/xiaohua/{} {}"
-    f= open("/home/gaozhiwei/Desktop/xiazaiflag.txt",'a')
+    sql = "select trackplayurl from ximalayathere"
+    # sql_update = "update qiankuntingshu set isplay='1' where id={};"
+    # sql_updateone = "update qiankuntingshu set mp3name={} where id={};"
+    cmd = " wget -O  /home/gaozhiwei/Downloads/xiaohua/{} {}"
+    f = open("/home/gaozhiwei/Desktop/xiazaiflag.txt", 'a')
 
     cursor.execute(sql)
     data_list = cursor.fetchall()
     # data_list= data_list[265:266]
     for i in data_list:
-        name = i[1]+i[2]
+        name = i[1] + i[2]
         print(i)
         # print(name,i[3])
         url = i[3]
         # print(type(url))
         if url:
             huizhui = url[-4:]
-            finalname = name +str(huizhui)
+            finalname = name + str(huizhui)
             # print(finalname)
-            down_url = cmd.format(finalname,url)
+            down_url = cmd.format(finalname, url)
             # print(down_url)
             flag = os.system(down_url)
             # print(flag)
             # print(type(flag))
-            if flag ==0:
+            if flag == 0:
                 cur_updateurl = sql_update.format(i[0])
-                cur_updateurlone= sql_updateone.format(json.dumps(finalname,ensure_ascii=False),i[0])
+                cur_updateurlone = sql_updateone.format(json.dumps(finalname, ensure_ascii=False), i[0])
                 cursor.execute(cur_updateurl)
                 # print(cur_updateurlone)
                 cursor.execute(cur_updateurlone)
-            f.write(str(flag)+url+'\n')
+            f.write(str(flag) + url + '\n')
 
     f.close()
-
-
 
 
 

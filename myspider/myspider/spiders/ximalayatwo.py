@@ -3,7 +3,6 @@ import json
 
 import pymysql
 import scrapy
-from scrapy.selector import Selector
 num = 0
 def re_url():
     url_list = []
@@ -15,12 +14,13 @@ def re_url():
     return url_list
 
 class XimaSpider(scrapy.Spider):
-    name = 'ximalaya'
+    name = 'ximalayatwo'
     allowed_domains = ['ximalaya.com']
     # start_urls = ['https://www.ximalaya.com/revision/category/allCategoryInfo']
     start_urls = ['https://www.ximalaya.com/revision/category/queryCategoryPageAlbums?category=yinyue&subcategory=liuxing&meta=&sort=0&page=1&perPage=1000']
     # start_urls = re_url()
     custom_settings = {
+        "DOWNLOAD_DELAY" : 0.01,
         'DEFAULT_REQUEST_HEADERS' : {
         "Accept": "*/*",
         "Accept-Encoding": "gzip, deflate, br",
@@ -56,7 +56,7 @@ class XimaSpider(scrapy.Spider):
                                autocommit=True, charset='utf8')
         cur = conn.cursor()
         url = 'https://www.ximalaya.com/revision/category/queryCategoryPageAlbums?category={}&subcategory={}&meta=&sort=0&page=1&perPage=5000'
-        sql1 = 'select albumtitle,albumid from ximalayatwo'
+        sql1 = 'select albumtitle,albumid from ximalayatwo_1'
         url = "https://www.ximalaya.com/revision/album/getTracksList?albumId={}&pageNum=1"
         cur.execute(sql1)
         scr_data_list = cur.fetchall()
@@ -84,14 +84,14 @@ class XimaSpider(scrapy.Spider):
         count = 0
         for i in range(1,num+1):
             count += 1
-            if count > 1:
-                break
+            # if count > 1:
+            #     break
             meta_dict['page']=i
             cru_url=scr_url.format(meta_dict['albumid'],i)
             # print(cru_url)
             yield scrapy.Request(cru_url,callback=self.parse_there,meta=meta_dict)
     def parse_there(self,response):
-        sql1 = 'Insert into ximalayathere(albumid, albumname, totalsize, trackid, trackname, trackplayurl, tracklinkurl, trackanchorid, trackcoverpath,page) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        sql1 = 'Insert into ximalayathere_1(albumid, albumname, totalsize, trackid, trackname, trackplayurl, tracklinkurl, trackanchorid, trackcoverpath,page) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         meta_dict = response.meta
         cur = meta_dict['cursor']
         json_data = response.body.decode('utf-8')
@@ -147,7 +147,7 @@ class XimaSpider(scrapy.Spider):
         cur = meta_dict['cursor']
         json_data = response.body.decode('utf-8')
         # print(meta_dict,'meta_dict')
-        sql = 'insert into ximalayatwo(categorynameone,categorynametwo,srcurllink,totalsize,albumid,albumtitle,albumcoverpath,albumauthorname,albumuserid,albumlinkurl,albumtrackcount) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        sql = 'insert into ximalayatwo_1(categorynameone,categorynametwo,srcurllink,totalsize,albumid,albumtitle,albumcoverpath,albumauthorname,albumuserid,albumlinkurl,albumtrackcount) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         file_path_src ='./ximalayaalbum/{}.json'
         file_path= file_path_src.format(meta_dict['categorytwoname'])
         # with open(file_path, 'w') as f:
