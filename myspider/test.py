@@ -6,6 +6,7 @@
 import json
 import random
 import re
+import os
 # with open('/home/gaozhiwei/Desktop/search_datasix1.json') as f:
 #     for i in f:
 #         # print(json.loads(i))
@@ -487,9 +488,6 @@ import re
 # print(data[0].strip())
 
 
-import re,json
-
-
 # with open("/home/gaozhiwei/Desktop/caipubuchong.json") as f:
 #     data1 = f.read()
 # with open("/home/gaozhiwei/Desktop/caipubuchongdierban.json") as f:
@@ -612,33 +610,68 @@ import re,json
 #
 #             pass
 
-import os
+# import os
+
+# def main():
+#     # with open("/home/gaozhiwei/Desktop/ximalayaanimalvoice/animalvoice1.json") as f:
+#     #     json_data = f.read()
+#     # data = json.loads(json_data)
+#     # voice_data = data['data']['tracksAudioPlay']
+#     # for i in voice_data:
+#     #     trackname = i['trackName']
+#     #     voice_src = i['src']
+#     #     print(trackname,voice_src)
+#     wgetcommand = "wget -O /home/gaozhiwei/Desktop/ximalayaanimalvoice/{}  {}"
+#     for i in os.listdir("/home/gaozhiwei/Desktop/ximalayaanimalvoice"):
+#         print(i)
+#         with open("/home/gaozhiwei/Desktop/ximalayaanimalvoice/{}".format(i)) as f:
+#             json_data = f.read()
+#         data = json.loads(json_data)
+#         voice_data = data['data']['tracksAudioPlay']
+#         for i in voice_data:
+#             trackname = i['trackName']
+#             voice_src = i['src']
+#             cur_huizhui = voice_src[-4:]
+#             trackname= trackname+cur_huizhui
+#             trackname=re.sub(" ",'',trackname)
+#             os.system(wgetcommand.format(trackname,voice_src))
+#             print(trackname, voice_src)
+
+
+# def main():
+#     # str = "134"
+#     # one=re.search(r"\p{N}",str)
+#     # print(one)
+#     list1=['11']
+#     list2=["eeee","dfs"]
+#     print(list1+(list2))
+# def main():
+#     dict_path= '/home/gaozhiwei/Desktop/meizikuvideoresource'
+#     file_name_list=os.listdir(dict_path)
+#     print(file_name_list)
+#     final_list_gushititle = list()
+#     for file_name in file_name_list:
+#         file_path = dict_path+'/'+file_name
+#         with open(file_path) as f:
+#             json_data = f.read()
+#             dict_data= json.loads(json_data)
+#             value_list = dict_data['dict'][0]['value']
+#             for title_name in value_list:
+#                 # print(title_name)
+#                 if re.search('故事',title_name):
+#                     print(title_name)
+#                     final_list_gushititle.append(title_name)
+#     with open('/home/gaozhiwei/Desktop/contain_stroy_title.json','w') as f:
+#         f.write(json.dumps(final_list_gushititle,ensure_ascii=False,indent=2))
+
 
 def main():
-    # with open("/home/gaozhiwei/Desktop/ximalayaanimalvoice/animalvoice1.json") as f:
-    #     json_data = f.read()
-    # data = json.loads(json_data)
-    # voice_data = data['data']['tracksAudioPlay']
-    # for i in voice_data:
-    #     trackname = i['trackName']
-    #     voice_src = i['src']
-    #     print(trackname,voice_src)
-    wgetcommand = "wget -O /home/gaozhiwei/Desktop/ximalayaanimalvoice/{}  {}"
-    for i in os.listdir("/home/gaozhiwei/Desktop/ximalayaanimalvoice"):
+    with open("/home/gaozhiwei/Desktop/xiaohua3000.json") as f:
+        json_data = f.read()
+    data = json.loads(json_data)
+    for i in data:
+        i=re.match("\d、",i,)
         print(i)
-        with open("/home/gaozhiwei/Desktop/ximalayaanimalvoice/{}".format(i)) as f:
-            json_data = f.read()
-        data = json.loads(json_data)
-        voice_data = data['data']['tracksAudioPlay']
-        for i in voice_data:
-            trackname = i['trackName']
-            voice_src = i['src']
-            cur_huizhui = voice_src[-4:]
-            trackname= trackname+cur_huizhui
-            trackname=re.sub(" ",'',trackname)
-            os.system(wgetcommand.format(trackname,voice_src))
-            print(trackname, voice_src)
-
 
 
 

@@ -316,3 +316,112 @@ class QiiankuntingshuPipeline():
         self.cursor.execute(self.sql,cur_list)
     def close_spider(self,spider):
         pass
+
+class XimaremenPipeline():
+    def __init__(self):
+        self.final_dict = {}
+        self.final_dict['dict'] = []
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+        # print(item)
+        # print("dddddddddddd",item)
+        self.final_dict['dict'].append(item)
+    def close_spider(self,spider):
+
+        with open("/home/gaozhiwei/Desktop/ximalayaremen.json",'w') as f:
+            f.write(json.dumps(self.final_dict,ensure_ascii=False,indent=1))
+
+class JinyiciPipeline():
+    def __init__(self):
+        self.final_dict = {}
+        self.final_dict['dict'] = []
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+        # print(item)
+        # print("dddddddddddd",item)
+        cur_dict= dict()
+        cur_dict['name']=item['name']
+        cur_dict['url']=item['url']
+        cur_dict['values']=item['values']
+        self.final_dict['dict'].append(cur_dict)
+        print(cur_dict)
+        # print(item)
+    def close_spider(self,spider):
+        # print(self.final_dict['dict'])
+        # pass
+        with open("/home/gaozhiwei/Desktop/fanyici.json",'w') as f:
+            f.write(json.dumps(self.final_dict,ensure_ascii=False,indent=1))
+
+class ShiwangPipeline():
+    def __init__(self):
+        self.final_dict = {}
+        self.final_dict['dict'] = []
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+        # print(item)
+        # print("dddddddddddd",item)
+        cur_dict= dict()
+        cur_dict['question']=item['question']
+        # cur_dict['url']=item['url']
+        cur_dict['answer']=item['answer']
+        self.final_dict['dict'].append(cur_dict)
+        print(cur_dict)
+        # print(item)
+    def close_spider(self,spider):
+        # print(self.final_dict['dict'])
+        # pass
+        with open("/home/gaozhiwei/Desktop/question-answer.json",'w') as f:
+            f.write(json.dumps(self.final_dict,ensure_ascii=False,indent=2))
+
+class XiaohuadaquanPipeline():
+    def __init__(self):
+        self.final_dict = {}
+        self.final_dict['dict'] = []
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+
+        self.final_dict['dict']=item
+        spider.crawler.engine.close_spider(spider, 'guanbi')
+
+    def close_spider(self,spider):
+        print(self.final_dict['dict'],'fsssssssssssssfffdsaaaa')
+        # print(self.final_dict['dict'])
+        # pass
+        # with open("/home/gaozhiwei/Desktop/question-answer.json",'w') as f:
+        #     f.write(json.dumps(self.final_dict,ensure_ascii=False,indent=2))
+
+class MiguMusicPipeline():
+    def __init__(self):
+        self.final_dict = {}
+        self.final_dict['dict'] = []
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+        self.final_dict['dict'].append(item)
+        print(item)
+    def close_spider(self,spider):
+        # pass
+        with open("/home/gaozhiwei/Desktop/migusearchtitle.json",'w') as f:
+            f.write(json.dumps(self.final_dict,indent=2,ensure_ascii=False))
+
+
+class ZhanzhangPipeline():
+    def __init__(self):
+        self.final_dict = {}
+        self.final_dict['dict'] = []
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+        cur_dict = dict()
+        cur_dict['title']= item['title']
+        cur_dict['mp3_url'] = item['mp3_url']
+        self.final_dict['dict'].append(cur_dict)
+    def close_spider(self,spider):
+        # pass
+        with open("/home/gaozhiwei/Desktop/zhangzhansucai.json",'w') as f:
+            f.write(json.dumps(self.final_dict,indent=2,ensure_ascii=False))
+

@@ -58,6 +58,7 @@ def To_chinese4(num):
                     # result+="零"
             return result[::-1]
         except Exception as e:
+            print(e)
             return ''
 
 

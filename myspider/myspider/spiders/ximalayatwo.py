@@ -56,7 +56,7 @@ class XimaSpider(scrapy.Spider):
                                autocommit=True, charset='utf8')
         cur = conn.cursor()
         url = 'https://www.ximalaya.com/revision/category/queryCategoryPageAlbums?category={}&subcategory={}&meta=&sort=0&page=1&perPage=5000'
-        sql1 = 'select albumtitle,albumid from ximalayatwo_1'
+        sql1 = 'select albumtitle,albumid from ximalayatwo_2'
         url = "https://www.ximalaya.com/revision/album/getTracksList?albumId={}&pageNum=1"
         cur.execute(sql1)
         scr_data_list = cur.fetchall()
@@ -91,7 +91,7 @@ class XimaSpider(scrapy.Spider):
             # print(cru_url)
             yield scrapy.Request(cru_url,callback=self.parse_there,meta=meta_dict)
     def parse_there(self,response):
-        sql1 = 'Insert into ximalayathere_1(albumid, albumname, totalsize, trackid, trackname, trackplayurl, tracklinkurl, trackanchorid, trackcoverpath,page) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        sql1 = 'Insert into ximalayathere_2(albumid, albumname, totalsize, trackid, trackname, trackplayurl, tracklinkurl, trackanchorid, trackcoverpath,page) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         meta_dict = response.meta
         cur = meta_dict['cursor']
         json_data = response.body.decode('utf-8')
@@ -147,7 +147,7 @@ class XimaSpider(scrapy.Spider):
         cur = meta_dict['cursor']
         json_data = response.body.decode('utf-8')
         # print(meta_dict,'meta_dict')
-        sql = 'insert into ximalayatwo_1(categorynameone,categorynametwo,srcurllink,totalsize,albumid,albumtitle,albumcoverpath,albumauthorname,albumuserid,albumlinkurl,albumtrackcount) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        sql = 'insert into ximalayatwo_2(categorynameone,categorynametwo,srcurllink,totalsize,albumid,albumtitle,albumcoverpath,albumauthorname,albumuserid,albumlinkurl,albumtrackcount) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         file_path_src ='./ximalayaalbum/{}.json'
         file_path= file_path_src.format(meta_dict['categorytwoname'])
         # with open(file_path, 'w') as f:

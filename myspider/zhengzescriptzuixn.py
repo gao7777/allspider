@@ -1,7 +1,5 @@
-import csv
 import json
 import re
-import jieba
 import pandas as pd
 _MAPPING = (
 u'零', u'一', u'二', u'三', u'四', u'五', u'六', u'七', u'八', u'九', u'十', u'十一', u'十二', u'十三', u'十四', u'十五', u'十六', u'十七',u'十八', u'十九')
@@ -148,9 +146,6 @@ def chinese_num(str_data):
     return str_data
 
 
-
-
-
 def migutitle(titlename_list):
 
     # with open("/home/gaozhiwei/Desktop/authorname_sort_uniq.txt") as f:
@@ -171,10 +166,10 @@ def migutitle(titlename_list):
         src_i = i
         i = chinese_num(i)
         i= quchubidian(i)
-        if re.search(":",src_i):
-            src_i=re.sub(":","：",src_i)
+        # if re.search(":",src_i):
+        #     src_i=re.sub(":","：",src_i)
         cur_list = []
-        cur_list.append(src_i)
+        # cur_list.append(src_i)
         cur_list.append(i)
         cur_final_list = list(set(cur_list))
         cur_dict={}
@@ -194,7 +189,7 @@ def migutitle(titlename_list):
     # final_dict_cur['majorType'] = "migu_read_author"
     # final_dict_cur['value']= final_list
     # final_dict['dict'].append(final_dict_cur)
-    with open("/home/gaozhiwei/Desktop/contentname_sort_uniq629.json",'w') as f:
+    with open("/home/gaozhiwei/Desktop/contentname_sort_uniq720.json",'w') as f:
         f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
 def miguauthor(author_list):
     author_list= list(set(author_list))
@@ -214,7 +209,7 @@ def miguauthor(author_list):
     f_dict['majorType'] = "migu_read_author"
     f_dict['value']= final_list
     final_dict['dict'].append(f_dict)
-    with open("/home/gaozhiwei/Desktop/authorname_sort_uniq629.json",'w') as f:
+    with open("/home/gaozhiwei/Desktop/authorname_sort_uniq720.json",'w') as f:
         f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
 
 def maintest():
@@ -273,7 +268,7 @@ def mainximalaya():
 
 
 def migutingshu():
-    with open("/home/gaozhiwei/Desktop/apiSearch.txt") as f:
+    with open("/home/gaozhiwei/Desktop/apiSearch0712.txt") as f:
         data = f.readlines()
 
     title_name= []
@@ -366,11 +361,6 @@ def mainximalayacsv():
         i['value'] = list(set(i['value']))
         final_final_dict_list.append(i)
     final_dict['dict'] = final_final_dict_list
-
-
-
-
-
 
     with  open("/home/gaozhiwei/Desktop/ximalayashierwang.json",'w') as f:
         f.write(json.dumps(final_dict,indent=1,ensure_ascii=False))
