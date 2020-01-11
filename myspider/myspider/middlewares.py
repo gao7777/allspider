@@ -4,9 +4,50 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import base64
+
 import requests
 from scrapy import signals
 import random
+
+
+# 隧道id和密码
+tid = "t17595826405381"
+password = "91qwoo84"
+# 隧道host和端口
+tunnel_master_host = "tps181.kdlapi.com"
+tunnel_master_port = 15818
+# 备用隧道host和端口
+tunnel_slave_host = "tps189.kdlapi.com"
+tunnel_slave_port = 15818
+# 切换阀值
+threshold = 3
+
+
+# 代理中间件
+class ProxyDownloadMiddleware(object):
+
+    def process_request(self, request, spider):
+        global threshold
+        if threshold > 0:
+            host, port = tunnel_master_host, tunnel_master_port
+        else:
+            host, port = tunnel_slave_host, tunnel_slave_port
+        if request.url.startswith("http://"):
+            proxy_url = 'http://{host}:{port}'.format(host=host, port=port)
+        elif request.url.startswith("https://"):
+            proxy_url = 'https://{host}:{port}'.format(host=host, port=port)
+        request.meta['proxy'] = proxy_url  # 设置代理
+        print("using proxy: {}".format(request.meta['proxy']))
+        # 隧道代理需要进行身份验证
+        #
+        # 用户名和密码需要先进行base64编码，然后再赋值
+        username_password = "{tid}:{password}".format(tid=tid, password=password)
+        b64_username_password = base64.b64encode(username_password.encode('utf-8'))
+        request.headers['Proxy-Authorization'] = 'Basic ' + b64_username_password.decode('utf-8')
+        threshold -= 1
+        return None
+
 
 class MyspiderSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,

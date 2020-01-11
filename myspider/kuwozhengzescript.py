@@ -2,6 +2,7 @@ import json
 import re,pymysql
 from zhongyinwenchuli import Year_to_chinese,To_chinese4
 def quchubidian(str):
+
     if re.search("[0-9年]~[0-9年]", str):
         list = re.findall("[0-9年][~|-][0-9年]", str)
         for i in list:

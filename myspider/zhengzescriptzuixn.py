@@ -1,57 +1,67 @@
 import json
+import os
 import re
 import pandas as pd
+import string
 _MAPPING = (
-u'零', u'一', u'二', u'三', u'四', u'五', u'六', u'七', u'八', u'九', u'十', u'十一', u'十二', u'十三', u'十四', u'十五', u'十六', u'十七',u'十八', u'十九')
-_P0 = (u'', u'十', u'百', u'千',u'万')
+    u'零', u'一', u'二', u'三', u'四', u'五', u'六', u'七', u'八', u'九', u'十', u'十一', u'十二', u'十三', u'十四', u'十五', u'十六', u'十七',
+    u'十八', u'十九')
+_P0 = (u'', u'十', u'百', u'千', u'万')
 _S4 = 10 ** 5
-num_mapgewei={
-    "0":"零",
-    "1":"一",
-    "2":"二",
-    "3":"三",
-    "4":"四",
-    "5":"五",
-    "6":"六",
-    "7":"七",
-    "8":"八",
-    "9":"九"
+num_mapgewei = {
+    "0": "零",
+    "1": "一",
+    "2": "二",
+    "3": "三",
+    "4": "四",
+    "5": "五",
+    "6": "六",
+    "7": "七",
+    "8": "八",
+    "9": "九"
 }
+
+
 def Chuling(str1):
-    if str1[-1] =='零':
-        str1=str1[:-1]
+    if str1[-1] == '零':
+        str1 = str1[:-1]
     # re.sub()
     return str1
+
+
 def Year_to_chinese(num):
     # print(num)
-    str =''
-    lst1=[]
+    str = ''
+    lst1 = []
     # print(lst1)
-    while num>10:
+    while num > 10:
         # print(num%10)
         lst1.append(num % 10)
-        num = num//10
+        num = num // 10
     lst1.append(num)
     lst1.reverse()
     # print(lst1)
-    for i,j in enumerate(lst1):
-        str+= _MAPPING[j]
-    if re.search("十",str):
-        str = re.sub("十","一零",str)
+    for i, j in enumerate(lst1):
+        str += _MAPPING[j]
+    if re.search("十", str):
+        str = re.sub("十", "一零", str)
     return str
+
+
 def Year_to_chinesenew(num):
     str_num = num
-    re_str =""
+    re_str = ""
     # print(str_num)
     for i in str_num:
-        i=str(int(i))
-        re_str+=num_mapgewei[i]
+        i = str(int(i))
+        re_str += num_mapgewei[i]
     return re_str
+
 
 def To_chinese4(num):
     # print(num,'hhhh')
     # assert (0 <= num and num < _S4)
-    if not 0<=num and num <_S4:
+    if not 0 <= num and num < _S4:
         return ''
     if num < 20:
         return _MAPPING[num]
@@ -86,25 +96,27 @@ def To_chinese4(num):
 def quchubidian(str):
     # print(str)
 
-    eng_list = re.findall("[a-zA-Z]+[ ]+[a-zA-Z]+",str)
-    if len(eng_list) !=0:
+    eng_list = re.findall("[a-zA-Z]+[ ]+[a-zA-Z]+", str)
+    if len(eng_list) != 0:
         for i in eng_list:
             # print(i)
-            zhanwenhoustr = re.sub(' ',"*",i)
+            zhanwenhoustr = re.sub(' ', "*", i)
             # print(zhanwenhoustr,'zhdsfaf')
-            str=re.sub(i,zhanwenhoustr,str)
+            str = re.sub(i, zhanwenhoustr, str)
             # print(str)
-        if re.search('[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a*]',str):
-            str=re.sub("[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a*]", '', str)
-        str=re.sub("\*"," ",str)
+        if re.search('[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a*]', str):
+            str = re.sub("[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a*]", '', str)
+        str = re.sub("\*", " ", str)
     else:
-        if re.search('[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a]',str):
-            str=re.sub("[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a]", '', str)
-    if re.search('丨',str):
-        str = re.sub('丨','',str)
+        if re.search('[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a]', str):
+            str = re.sub("[^\u4e00-\u9fa5\u0030-\u0039\u0041-\u005a\u0061-\u007a]", '', str)
+    if re.search('丨', str):
+        str = re.sub('丨', '', str)
     return str.upper()
+
+
 def chinese_num(str_data):
-    if re.search("℃",str_data):
+    if re.search("℃", str_data):
         list = re.findall("℃", str_data)
         for i in list:
             cur_str = re.sub("℃", "度", i)
@@ -114,18 +126,18 @@ def chinese_num(str_data):
         for i in list:
             cur_str = re.sub("[~|-]", "至", i)
             str_data = re.sub(i, cur_str, str_data)
-    if re.search("[\d]+[.|.][\d]+",str_data):
-        list = re.findall("[\d]+[.|.][\d]+",str_data)
-        for i in  list:
-            cur_str = re.sub("[.|.]","点",i)
-            str_data= re.sub(i,cur_str,str_data)
-    if re.search(r"[\d]+[/][\d]+",str_data):
-        cur=re.search(r"([\d]+)[/]([\d]+)",str_data)
-        str_data=re.sub("[\d]+[/][\d]+",cur.group(2)+"/"+cur.group(1),str_data)
-        list = re.findall(r"[\d]+[/][\d]+",str_data)
-        for i in  list:
-            cur_str = re.sub(r"/","分之",i)
-            str_data= re.sub(i,cur_str,str_data)
+    if re.search("[\d]+[.|.][\d]+", str_data):
+        list = re.findall("[\d]+[.|.][\d]+", str_data)
+        for i in list:
+            cur_str = re.sub("[.|.]", "点", i)
+            str_data = re.sub(i, cur_str, str_data)
+    if re.search(r"[\d]+[/][\d]+", str_data):
+        cur = re.search(r"([\d]+)[/]([\d]+)", str_data)
+        str_data = re.sub("[\d]+[/][\d]+", cur.group(2) + "/" + cur.group(1), str_data)
+        list = re.findall(r"[\d]+[/][\d]+", str_data)
+        for i in list:
+            cur_str = re.sub(r"/", "分之", i)
+            str_data = re.sub(i, cur_str, str_data)
     num_list = re.findall("\d+", str_data)
     if num_list != []:
         for i in num_list:
@@ -135,19 +147,18 @@ def chinese_num(str_data):
                 # print(i)
                 zw_str = Year_to_chinesenew(i)
                 # print(zw_str)
-                str_data = re.sub(i, zw_str, str_data,count=1)
+                str_data = re.sub(i, zw_str, str_data, count=1)
                 # print(b)
             else:
                 # print(b)
                 zw_str = To_chinese4(int(i))
-                str_data = re.sub(i, zw_str, str_data,count=1)
+                str_data = re.sub(i, zw_str, str_data, count=1)
                 # print(b,'===xiyuu44')
                 # print(num_list)
     return str_data
 
 
 def migutitle(titlename_list):
-
     # with open("/home/gaozhiwei/Desktop/authorname_sort_uniq.txt") as f:
     #     json_data = f.readlines()
     # with open("/home/gaozhiwei/Desktop/contentname_sort_uniq.txt") as f:
@@ -162,37 +173,38 @@ def migutitle(titlename_list):
     titlename_list = list(set(titlename_list))
     for i in titlename_list:
         i = i.strip()
-        source=i
+        source = i
         src_i = i
         i = chinese_num(i)
-        i= quchubidian(i)
+        i = quchubidian(i)
         # if re.search(":",src_i):
         #     src_i=re.sub(":","：",src_i)
         cur_list = []
         # cur_list.append(src_i)
         cur_list.append(i)
         cur_final_list = list(set(cur_list))
-        cur_dict={}
-        cur_dict['majorType']="migu_read_title"
-        cur_dict['minorType']=source
-        cur_dict['value']=cur_final_list
+        cur_dict = {}
+        cur_dict['majorType'] = "migu_read_title"
+        cur_dict['minorType'] = source
+        cur_dict['value'] = cur_final_list
         final_list.append(cur_dict)
-
 
     for i in final_list:
         print(i)
 
     final_dict = {}
-    final_dict['dict']= []
-    final_dict['dict']=final_list
+    final_dict['dict'] = []
+    final_dict['dict'] = final_list
     # final_dict_cur ={}
     # final_dict_cur['majorType'] = "migu_read_author"
     # final_dict_cur['value']= final_list
     # final_dict['dict'].append(final_dict_cur)
-    with open("/home/gaozhiwei/Desktop/contentname_sort_uniq720.json",'w') as f:
-        f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
+    with open("/home/gaozhiwei/Desktop/contentname_sort_uniq720.json", 'w') as f:
+        f.write(json.dumps(final_dict, ensure_ascii=False, indent=1))
+
+
 def miguauthor(author_list):
-    author_list= list(set(author_list))
+    author_list = list(set(author_list))
     final_list = []
     for i in author_list:
         cur_list = []
@@ -200,42 +212,43 @@ def miguauthor(author_list):
         i = chinese_num(i)
         i = quchubidian(i)
         cur_list.append(i)
-        cur_list= list(set(cur_list))
+        cur_list = list(set(cur_list))
         for j in cur_list:
             final_list.append(j)
     final_dict = {}
-    final_dict['dict']=[]
+    final_dict['dict'] = []
     f_dict = {}
     f_dict['majorType'] = "migu_read_author"
-    f_dict['value']= final_list
+    f_dict['value'] = final_list
     final_dict['dict'].append(f_dict)
-    with open("/home/gaozhiwei/Desktop/authorname_sort_uniq720.json",'w') as f:
-        f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
+    with open("/home/gaozhiwei/Desktop/authorname_sort_uniq720.json", 'w') as f:
+        f.write(json.dumps(final_dict, ensure_ascii=False, indent=1))
+
 
 def maintest():
-    list1 = ['s','f']
+    list1 = ['s', 'f']
     for num in range(3):
         for i in list1:
-            if i =='s':
+            if i == 's':
                 print(i)
                 break
 
         else:
-            print(i+'else')
+            print(i + 'else')
             print("else")
 
 
 def mainximalaya():
-    with open("/home/gaozhiwei/Desktop/ximalayadiyiban.json",'r') as f:
+    with open("/home/gaozhiwei/Desktop/ximalayadiyiban.json", 'r') as f:
         json_data = f.read()
-    with open("/home/gaozhiwei/Desktop/ximalayaremen.json",'r') as f:
+    with open("/home/gaozhiwei/Desktop/ximalayaremen.json", 'r') as f:
         remen_data = f.read()
-    remen_data= json.loads(remen_data)
-    remen_data= remen_data['dict']
+    remen_data = json.loads(remen_data)
+    remen_data = remen_data['dict']
     data = json.loads(json_data)
     data = data['dict']
     remen_list = []
-    title_list  = []
+    title_list = []
     for i in data:
         title_list.append(i['minorType'])
     for i in remen_data:
@@ -243,8 +256,8 @@ def mainximalaya():
         remen_list.append(i['minorType'])
     print(len(title_list))
     print(len(list(set(title_list))))
-    title_list= list(set(title_list))
-    final_dict ={}
+    title_list = list(set(title_list))
+    final_dict = {}
     final_dict['dict'] = []
 
     for i in title_list:
@@ -254,34 +267,34 @@ def mainximalaya():
                 break
         else:
             cur_dict = {}
-            cur_dict['majorType']='question'
-            cur_dict['minorType']=i
+            cur_dict['majorType'] = 'question'
+            cur_dict['minorType'] = i
             value = chinese_num(i)
             value = quchubidian(value)
-            cur_dict['value']= [value]
+            cur_dict['value'] = [value]
             final_dict['dict'].append(cur_dict)
 
     print(len(final_dict['dict']))
 
-    with open("/home/gaozhiwei/Desktop/ximalayazhenghe.json",'w') as f:
-        f.write(json.dumps(final_dict,ensure_ascii=False,indent=1))
+    with open("/home/gaozhiwei/Desktop/ximalayazhenghe.json", 'w') as f:
+        f.write(json.dumps(final_dict, ensure_ascii=False, indent=1))
 
 
 def migutingshu():
-    with open("/home/gaozhiwei/Desktop/apiSearch0712.txt") as f:
+    with open("/home/gaozhiwei/Desktop/apiSearch1015.txt") as f:
         data = f.readlines()
 
-    title_name= []
+    title_name = []
     author_name = []
     for i in data:
         i = i.strip()
-        if re.match("contentName=(.*)",i):
-            contentname = re.match("contentName=(.*)",i).group(1)
-            if contentname!= "" and contentname!= None:
+        if re.match("contentName=(.*)", i):
+            contentname = re.match("contentName=(.*)", i).group(1)
+            if contentname != "" and contentname != None:
                 title_name.append(contentname)
-        if re.match("author=(.*)",i):
-            authorname = re.match("author=(.*)",i).group(1)
-            if authorname != "" and authorname!= None:
+        if re.match("author=(.*)", i):
+            authorname = re.match("author=(.*)", i).group(1)
+            if authorname != "" and authorname != None:
                 author_name.append(authorname)
 
     miguauthor(author_name)
@@ -307,7 +320,7 @@ def mainximalayacsv():
     shierwang_list = json.loads(chongfu_json)
     zhuanji_list = shierwang_list
     zhuanji_list = list(set(zhuanji_list))
-    print(len(zhuanji_list),'zong')
+    print(len(zhuanji_list), 'zong')
     final_dict = {}
     final_dict['dict'] = []
     handle_list = []
@@ -317,19 +330,19 @@ def mainximalayacsv():
             i = i.strip()
         except Exception as e:
             print(i)
-        if i =="" or None:
+        if i == "" or None:
             pass
         else:
             cur_dict = {}
-            cur_dict['majorType']="question"
+            cur_dict['majorType'] = "question"
             cur_dict['minorType'] = i
             cur_dict['value'] = []
             handle_i = chinese_num(i)
-            handle_i= quchubidian(handle_i)
+            handle_i = quchubidian(handle_i)
             handle_list.append(handle_i)
             # cur_dict['value'].append(i)
             cur_dict['value'].append(handle_i)
-            cur_dict['value']= list(set(cur_dict['value']))
+            cur_dict['value'] = list(set(cur_dict['value']))
             final_dict['dict'].append(cur_dict)
 
     # handle_list_set = set(handle_list)
@@ -344,7 +357,7 @@ def mainximalayacsv():
     final_dict_roundone = []
     chongfu_list = []
     for i in final_dict['dict']:
-        cur_value_list =i['value']
+        cur_value_list = i['value']
         for value in cur_value_list:
             if value not in final_set:
                 final_set.add(value)
@@ -362,18 +375,103 @@ def mainximalayacsv():
         final_final_dict_list.append(i)
     final_dict['dict'] = final_final_dict_list
 
-    with  open("/home/gaozhiwei/Desktop/ximalayashierwang.json",'w') as f:
-        f.write(json.dumps(final_dict,indent=1,ensure_ascii=False))
+    with  open("/home/gaozhiwei/Desktop/ximalayashierwang.json", 'w') as f:
+        f.write(json.dumps(final_dict, indent=1, ensure_ascii=False))
 
 
+def xima_filter_1123():
+    path = '/home/gaozhiwei/Desktop/nlpmoshi/semantic-resources/dictionaries'
+    minortype_src = set()
+    new_set = set()
+    final_dict = dict()
+    final_dict['dict'] = list()
+    # with open('/home/gaozhiwei/Desktop/ximalayazuixin.txt') as f:
+    with open('/home/gaozhiwei/Desktop/nlp-source(1).json') as f:
+        new_data_list = f.read()
+    data_list = json.loads(new_data_list)['values']
 
+    # for os_path, dirname, files in os.walk(path):
+    #     for filename in files:
+    #         if re.match('ximalaya', filename):
+    #             # print(filename)
+    #             with open(os.path.join(os_path, filename)) as f:
+    #                 json_data = f.read()
+    #
+    #             # # print(filename)
+    #             dict_data = json.loads(json_data)
+    #             cur_dict = dict_data['dict']
+    #             for one_dict in cur_dict:
+    #                 minortype = one_dict['minorType']
+    #                 if re.search("中国人的性格",minortype):
+    #                     print(filename,minortype)
+    #                 minortype_src.add(minortype)
 
+                    # print(two_values)
+    for i in data_list:
+        # i = i.strip()
+        i= i['title']
+        if i not in minortype_src and len(i) >= 2:
+            minortype_src.add(i)
+            # print(i)
+            filter = quchubidian(i)
+            filter = chinese_num(filter)
+            # if re.search("（.*）",i) or re.search("\(.*\)"):
+            if re.search("（.*）", i):
+                filter2 = re.sub("（.*）.*", "", i)
+            else:
+                filter2 = i
+            if re.search("\(.*\)", filter2):
+                filter2 = re.sub("\(.*\).*", "", filter2)
+            else:
+                filter2 = filter2
 
+            if re.search("\[.*\]", filter2):
+                filter2 = re.sub("\[.*\].*", "", filter2)
+            else:
+                filter2 = filter2
+            if re.search("【.*】", filter2):
+                filter2 = re.sub("【.*】.*", "", filter2)
+            else:
+                filter2 = filter2
+            if re.search("作者:", filter2):
+                filter2 = re.sub("作者:.*", "", filter2)
+            else:
+                filter2 = filter2
+            filter2 = quchubidian(filter2)
+            filter2 = chinese_num(filter2)
+
+            cur_dict = dict()
+            cur_dict['majorType'] = 'newfenghuangstory_title'
+            cur_dict['minorType'] = i
+            if re.search(r"[\!\"\#\$\%\&\'\(\)\*\+\,\-\.\:\;\<\=\>\?\@\[\]\^\_\`\{\|\}~]", i):
+                cur_src_i = re.sub(r"[\!\"\#\$\%\&\'\(\)\*\+\,\-\.\:\;\<\=\>\?\@\[\]\^\_\`\{\|\}~]","", i)
+                # print(cur_src_i)
+                # print(i)
+            else:
+                cur_src_i = i
+
+            cur_dict['value'] = set()
+            if len(filter2) >= 2:
+                cur_dict['value'].add(filter2.strip())
+            if len(cur_src_i) >= 2:
+                cur_dict['value'].add(cur_src_i.strip())
+            if len(filter) >= 2:
+                cur_dict['value'].add(filter.strip())
+            cur_dict['value'] = list(cur_dict['value'])
+            final_dict['dict'].append(cur_dict)
+    print(len(final_dict['dict']))
+    print(final_dict)
+    with open('/home/gaozhiwei/Desktop/newfenghuangstory.json', 'w') as f:
+        f.write(json.dumps(final_dict, ensure_ascii=False, indent=1))
+def test1111():
+    a,b='鲤鱼跃龙门','鲤鱼跃龙门 '
 
 
 if __name__ == '__main__':
     # main()
     # maintest()
     # mainximalaya()
-    migutingshu()
+    # migutingshu()
     # mainximalayacsv()
+    xima_filter_1123()
+    # test1111()

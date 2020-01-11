@@ -310,8 +310,13 @@ def main():
     print(num)
     print(len(donthave))
 
-
+def maintest():
+    a = 00000000
+    b = 12
+    c = a+b
+    print(str(c).zfill(8))
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    maintest()

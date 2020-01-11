@@ -1273,14 +1273,270 @@ def tangshidanzi():
 
 
 
+def testssss():
+    import string
+    base_url = "http://music.migu.cn/v3/music/artist?tagId=1&type={type}&firstLetter={firstletter}&page=1"
+    all_list = list()
+    for i in string.ascii_uppercase[:3]:
+        # print(i)
+        for j in string.ascii_uppercase[:26]:
+            cur_url = base_url.format(type=i,firstletter=j)
+            all_list.append(cur_url)
+            # print(cur_url)
+    print(all_list)
+
+
+def miguall():
+    import pymysql,json,re
+    conn = pymysql.connect(host="localhost", user='root', password="gaozhiwei",
+                           database='nlpdata', port=3306, autocommit=False)
+    cur = conn.cursor()
+
+    select_title_sql = "select songsinger from migumusicall"
+    cur.execute(select_title_sql)
+    data_list = cur.fetchall()
+    data_list = list(set(data_list))
+    final_dict = dict()
+    final_dict['dict'] = list()
+    cur_dict = dict()
+    cur_dict['majorType'] = 'song'
+    cur_dict['value'] = list()
+    for i in data_list:
+        title = i[0]
+        if title is not None:
+            if re.search("\(.*\)",title):
+                print(title)
+                title = re.sub('\(.*\)', '', title)
+            res = chinese_num(title)
+            res = quchubidian(res)
+            if len(res) > 1:
+                cur_dict['value'].append(res)
+            print(res)
+        else:
+            print(i)
+    cur_dict['value'] = list(set(cur_dict['value']))
+    final_dict['dict'].append(cur_dict)
+    with open("/home/gaozhiwei/Desktop/migusingerall.json", 'w') as f:
+        f.write(json.dumps(final_dict, ensure_ascii=False, indent=2))
 
 
 
+def all_title_filter():
+    import os,json,re
+    base_address = "/home/gaozhiwei/Desktop/allsinger"
+    file_list = os.listdir(base_address)
+    all_data = set()
+    for filename in file_list:
+        # print(i)
+        try:
+            with open(base_address+'/'+filename) as f:
+                json_data = f.read()
+                data = json.loads(json_data)
+                value_list = data['dict'][0]['value']
+                for i in value_list:
+                    # pass
+                    all_data.add(i)
+
+        except Exception as e:
+            print(e)
+            print(filename)
+    print(os.path.dirname(base_address))
+    with open(os.path.dirname(base_address) + '/migusingerall.json') as f:
+        data = f.read()
+        data=json.loads(data)
+        value_list = data['dict'][0]['value']
+        value_list = list(set(value_list))
+        num =0
+        final_dict = dict()
+        final_dict['dict'] = list()
+        cur_dict = dict()
+        cur_dict['majorType'] = 'song'
+        cur_dict['value'] = list()
+        for i in value_list:
+            if i in all_data:
+                print(i)
+                num +=1
+            else:
+                cur_dict['value'].append(i)
+        print(num)
+        print(len(value_list))
+        final_dict['dict'].append(cur_dict)
+    with open("/home/gaozhiwei/Desktop/music_singer_2.json", 'w') as f:
+        f.write(json.dumps(final_dict, ensure_ascii=False, indent=2))
 
 
+def kibanafilter():
+    import requests,json
+
+    with open("/home/gaozhiwei/Desktop/kibana.json") as f:
+        json_data = f.read()
+    data = json.loads(json_data)
+    hits_list = data['hits']['hits']
+    print(data['hits']['total'])
+    total_dict = dict()
+    total_dict['totalnum']=len(hits_list)
+    total_dict['domain'] = dict()
+    total_dict['query'] = dict()
+    total_dict['origindata'] = list()
+    domain_set = set()
+    query_set = set()
+    for i in hits_list:
+        _source = i['_source']
+        if _source ==None:
+            print(i)
+        domain = _source['domain']
+        query = _source['query']
+        cur_dict = dict()
+        cur_dict['domain'] = domain
+        cur_dict['query'] = query
+        if domain not in domain_set:
+            domain_set.add(domain)
+            total_dict['domain'][domain] =1
+        else:
+            total_dict['domain'][domain]+=1
+        if query not in query_set:
+            query_set.add(query)
+            total_dict['query'][query] =1
+        else:
+            total_dict['query'][query]+=1
+        total_dict['origindata'].append(cur_dict)
+    print(total_dict)
+        # if domain==None or query==None:
+        #     print(_source)
+    with open("/home/gaozhiwei/Desktop/esdata1-8.json",'w') as f:
+        f.write(json.dumps(total_dict,indent=2,ensure_ascii=False))
+
+def esfilter():
+    import requests,json
+    header = {'Content-Type':'application/json'}
+    paramter = {
+  "version": 'true',
+  "size": 500,
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "desc",
+        "unmapped_type": "boolean"
+      }
+    }
+  ],
+  "_source": {
+    "excludes": []
+  },
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "interval": "3h",
+        "time_zone": "Asia/Shanghai",
+        "min_doc_count": 1
+      }
+    }
+  },
+  "stored_fields": [
+    "*"
+  ],
+  "script_fields": {},
+  "docvalue_fields": [
+    {
+      "field": "@timestamp",
+      "format": "date_time"
+    }
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "exists": {
+            "field": "query"
+          }
+        },
+        {
+          "exists": {
+            "field": "domain"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "format": "strict_date_optional_time",
+              "gte": "2019-08-31T17:00:00.000Z",
+              "lte": "2019-09-08T15:30:00.000Z"
+            }
+          }
+        }
+      ],
+      "filter": [
+        {
+          "match_all": {}
+        }
+      ],
+      "should": [],
+      "must_not": []
+    }
+  },
+  "highlight": {
+    "pre_tags": [
+      "@kibana-highlighted-field@"
+    ],
+    "post_tags": [
+      "@/kibana-highlighted-field@"
+    ],
+    "fields": {
+      "*": {}
+    },
+    "fragment_size": 2147483647
+  }
+}
+    url = 'http://39.105.111.162:9200/_search'
+    # res = requests.request(method='GET',headers=header,params=json.dumps(paramter),url='http://39.105.111.162:9200/_search')
+    res = requests.post(url=url,json=paramter,headers =header)
+    print(res.status_code)
+    print(res.content)
+
+def method_test():
+    from functools import update_wrapper
 
 
+    def wrapper(f):
+        def wrapper_function(*args, **kwargs):
+            """这个是修饰函数"""
+            return f(*args, **kwargs)
+        # update_wrapper(wrapper_function, f)  # <<  添加了这条语句
+        print('update_wrapper')
+        return wrapper_function
 
+    @wrapper
+    def test_a():
+        print('aa')
+    test_a.a= 'aaaa'
+    test_a.b = 'bbbb'
+    print(test_a.__name__)
+    class A:
+        pass
+    class B:
+        pass
+    class C(A,B):
+        def cc(self):
+            print('aaa')
+    print(C.__mro__)
+
+def dict_method_test():
+    # stu = [('wang', 1), ('zhang', 4), ('fu', 2), ('li', 3), ('fu', 7), ('wang', 2), ('wang', 8)]
+    # stu_set = {}
+    # for k, v in stu:
+    #     stu_set.setdefault(k, set()).add(v)
+    # for k, v in stu_set.items():
+    #     print(k, v)
+    a= 1000
+    b =1000
+    c= 3
+    if c == a or b:
+        print(c)
+        print(id(a),id(b))
+    a = None
+    b = None
+    print(a == b, a is b)
 
 
 
@@ -1302,4 +1558,11 @@ if __name__ == '__main__':
     # yinxiao()
     # guoneicity()
     # migumusic()
-    tangshidanzi()
+    # tangshidanzi()
+    # testssss()
+    # miguall()
+    # all_title_filter()
+    # kibanafilter()
+    # esfilter()
+    # method_test()
+    dict_method_test()

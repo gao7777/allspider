@@ -14,7 +14,7 @@ import pandas as pd
 import csv
 class MyspiderPipeline(object):
     def process_item(self, item, spider):
-        print(spider.name)
+        # print(spider.name)
         # print(item)
         return item
 
@@ -424,4 +424,70 @@ class ZhanzhangPipeline():
         # pass
         with open("/home/gaozhiwei/Desktop/zhangzhansucai.json",'w') as f:
             f.write(json.dumps(self.final_dict,indent=2,ensure_ascii=False))
+
+class MiguMusicSingerPipeline():
+    def __init__(self):
+        self.final_list = list()
+        # self.con = pymysql.connect(host="127.0.0.1", user='root', password='gaozhiwei', database='nlpdata',autocommit=True, charset='utf8')
+        # self.curson = self.con.cursor()
+        # self.insert_sql = "insert into migumusicall(songname, songsinger, songtag, songlyric, songurl) values (%s,%s,%s,%s,%s)"
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+        self.final_list.append(item)
+
+        # cur_list = list()
+        # cur_list.append(item['song_name'])
+        # cur_list.append(item['song_singer'])
+        # cur_list.append(item['song_tag_str'])
+        # cur_list.append(item['song_lyric'])
+        # cur_list.append(item['request_url'])
+        print('itemmmmmmmmmmmmm',json.dumps(item,ensure_ascii=False))
+        # print(cur_list)
+        # self.curson.execute(self.insert_sql,cur_list)
+    def close_spider(self,spider):
+        # pass
+        # self.curson.close()
+        # self.con.close()
+        # pass
+        with open("/home/gaozhiwei/Desktop/migudata1218detail.json",'w') as f:
+        # with open("/home/sound/1209spidersmigu/migudata1209detail.json",'w') as f:
+            f.write(json.dumps(self.final_list,indent=2,ensure_ascii=False))
+
+class TaihePipeline():
+    def __init__(self):
+        self.final_list = list()
+        # self.con = pymysql.connect(host="127.0.0.1", user='root', password='gaozhiwei', database='nlpdata',autocommit=True, charset='utf8')
+        # self.curson = self.con.cursor()
+        # self.insert_sql = "insert into migumusicall(songname, songsinger, songtag, songlyric, songurl) values (%s,%s,%s,%s,%s)"
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+        self.final_list.append(item)
+        # cur_list = list()
+        print('itemmmmmmmmmmmmmmmmmmmmm',json.dumps(item,ensure_ascii=False))
+        # cur_list.append(item['song_name'])
+        # cur_list.append(item['song_singer'])
+        # cur_list.append(item['song_tag_str'])
+        # cur_list.append(item['song_lyric'])
+        # cur_list.append(item['request_url'])
+        # print('itemmmmmmmmmmmmm',item)
+        # print(cur_list)
+        # self.curson.execute(self.insert_sql,cur_list)
+    def close_spider(self,spider):
+        with open("/home/gaozhiwei/Desktop/taihe1218.json",'w') as f:
+            f.write(json.dumps(self.final_list,indent=2,ensure_ascii=False))
+
+
+class BaidubaikePipeline():
+    def __init__(self):
+        self.final_dict = list()
+        # self.final_dict['dict'] = []
+    def open_spider(self,spider):
+        pass
+    def process_item(self,item,spider):
+        self.final_dict.append(item)
+    def close_spider(self,spider):
+        with open("/home/gaozhiwei/Desktop/baidubaike.json",'w') as f:
+            f.write(json.dumps(self.final_dict,ensure_ascii=False,indent=1))
 
